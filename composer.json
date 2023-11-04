@@ -1,0 +1,16 @@
+{
+    "name": "skregas/phpmvc-framework",
+    "description": "A from-the-ground-up by hand php framework",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "skregas",
+            "email": "skregas01@gmail.com"
+        }
+    ],
+    "require": {}
+}
