@@ -47,6 +47,7 @@ class Router {
         if ($callback === false) {
             return "<br />The path " . $path . " was not found\n <br />";
         }
+        
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
