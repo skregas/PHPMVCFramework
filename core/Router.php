@@ -41,22 +41,21 @@ class Router {
     }
 
     public function resolve(){
-        // TODO: determine current path (URL)
         $path = $this->request->getPath();
-        // TODO: determine current method (GET, POST, etc)
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
-            echo "<br />" . $path . " Not Found\n <br />";
+            return "<br />The path " . $path . " was not found\n <br />";
             exit;
         }
+        if (is_string($callback)) {
+            return $this->renderView($callback);
+        }
 
-        echo call_user_func($callback);
-        echo '<pre>';
-        var_dump ($path, $method, $callback, $this->routes); 
-        echo '</pre>';
-        exit;
-        
+        return call_user_func($callback);
+    }
 
+    public function renderView($view) {
+        include_once __DIR__."/../views/$view.php";
     }
 }

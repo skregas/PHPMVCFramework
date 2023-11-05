@@ -19,6 +19,6 @@ class Application {
 
     public function run(){
         echo "<br />Application -> run method called\n";
-        $this->router->resolve();
+        echo $this->router->resolve();
     }
 }

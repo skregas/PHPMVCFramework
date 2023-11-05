@@ -1,1 +1,9 @@
+# composer files
 /vendor/
+# personal notes about the current commit's work
+notes.md
+todos.md
+# exclude everything in runtime...
+/runtime/*
+# ...except
+!/runtime/.gitkeep
