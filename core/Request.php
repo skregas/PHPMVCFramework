@@ -2,18 +2,20 @@
 
 namespace app\core;
 
-/**
- * Class Request
- * 
- * @author skregas <skregas01@gmail.com>
- * @package app\core
- */
+
+ /**
+  * Request class
+  * Handles incoming requests
+  *
+  * @author skregas <skregas01@gmail.com>
+  * @package htdocs/PHPMVCFramework/core/Request.php
+  * @copyright (c) 2023
+  */
 
 class Request
 {
     public function getPath() {
         // return the current path from the URI
-        // TODO: strip and return everything but the path
         $path = $_SERVER["REQUEST_URI"] ?? '/';
         $position = strpos($path, "?");
         if ($position === false) {
@@ -21,11 +23,6 @@ class Request
         } else {
             return substr($path, 0, $position);
         }
-        echo '<pre>';
-        var_dump ($position);
-        echo '</pre>';
-        exit;
-
     }
 
     public function getMethod() {
