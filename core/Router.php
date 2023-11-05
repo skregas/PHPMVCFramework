@@ -46,6 +46,7 @@ class Router {
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             return "<br />The path " . $path . " was not found\n <br />";
+            exit;
         }
         
         if (is_string($callback)) {
