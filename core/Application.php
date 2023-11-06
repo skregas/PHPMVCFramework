@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+
 /**
  * Class Application
  * 
@@ -9,16 +10,21 @@ namespace app\core;
  * @package app\core
  */
 class Application {
-    public  $router; // typed properties; available php +7.4
-    public  $request;
-    public function __construct() {
-    
+    public static $ROOT_DIR;
+    public static  $app;
+    public   $router; 
+    public   $request;
+    public  $response;
+    public function __construct($rootPath) {
+        self::$ROOT_DIR = $rootPath;
+        self::$app = $this;
         $this->request = new Request();
-        $this->router = new Router($this->request);
+        $this->response = new Response(); 
+        $this->router = new Router($this->request, $this->response);
     }
 
     public function run(){
-        echo "<br />Application -> run method called\n";
+        // echo "<br />Application -> run method called\n";
         echo $this->router->resolve();
     }
 }
