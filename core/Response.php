@@ -13,13 +13,9 @@ class Response {
     }
 
     public function setStatusCode(int $code) {
+        // This does work as expected WHEN there is no other preceding output, ie. echo statements
+        http_response_code($code);
         
-        // http_response_code($code); // this doesn't update the code according to Chrome's Inspect tool
-        // http_response_code();
-        // but modifying the header itself does
-        if ($code == 404) {
-            header("HTTP/1.1 404 Not Found", true, $code);
-        }
     }
 }
 

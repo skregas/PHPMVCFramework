@@ -40,8 +40,11 @@ class Router {
     public function get($path, $callback){
         // associated array
         $this->routes['get'][$path] = $callback;
+    }
 
-
+    public function post($path, $callback){
+        // associated array
+        $this->routes['post'][$path] = $callback;
     }
 
     public function resolve(){
@@ -50,19 +53,22 @@ class Router {
         $callback = $this->routes[$method][$path] ?? false;
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return "<br />The path " . $path . " was not found\n <br />";
+            return $this->renderView("_404");
         }
         
         if (is_string($callback)) {
             return $this->renderView($callback);
         }
 
+        if (is_array($callback)){
+            $callback[0] = new $callback[0]();
+        }
         return call_user_func($callback);
     }
 
-    public function renderView($view) {
+    public function renderView($view, $params = []) {
         $layoutContent = $this->getLayoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -72,10 +78,13 @@ class Router {
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view) {
+    protected function renderOnlyView($view, $params = []) {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+        
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
-        # code...
     }
 }
