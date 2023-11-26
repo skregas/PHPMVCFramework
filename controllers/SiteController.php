@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\core\Application;
+use app\core\Request;
 
 /**
  * Summary of SiteController
@@ -20,9 +22,14 @@ class SiteController extends Controller {
     public function contact() {
         return $this->render("contact");
     }
-    public function handleContact() {
+    public function handleContact(Request $request) {
         //should be returned whenever we make the post request on the Contact form
-        return "In SiteController: handling submitted data";
+        $body = $request->getBody();
+        // return "In SiteController: handling submitted data";
+        echo '<pre>';
+        var_dump ($body);
+        echo '</pre>';
+        exit;
     }
 }
 
