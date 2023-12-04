@@ -33,7 +33,7 @@
   </div>
   <div class="form-group">
     <label>Confirm Password</label>
-    <input type="password" name="confirm_password" class="form-control">
+    <input type="password" name="passwd_confirm" class="form-control">
   </div>
   <!-- <div class="form-group">
     <label for="exampleFormControlTextarea1">Message</label>
