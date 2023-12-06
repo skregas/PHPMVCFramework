@@ -24,7 +24,7 @@ abstract class Model{
         }
     }
     /**
-     * Must be overidden by child class. Returns set of validation rules as array
+     * Must be overridden by child class. Returns set of validation rules as array
      * @return array
      * @author skregas
      */
@@ -49,23 +49,28 @@ abstract class Model{
 
     /**
      * Must be overridden by child class. Return the error message associated with the given rule
-     * @param mixed $rule
-     * @return void
+     * @return array
      * @author skregas
      */
     abstract function errorMessages(): array;
 
 
     /**
-     * Validate data passed via registration form, according to set of rules defined in RegisterModel
+     * Validate data passed via registration form, according to set of rules defined in child model.
      * @return bool
      * @author skregas
+     * 
+     * TODO:
+     * This whole validation process is tied to the rule definitions defined in the child model.
+     * If a child class creates a new rule, it needs to be added here.
+     * But login class will need to use the same email and password rules.
+     * Maybe other validation methods for different purposes?
      */
     public function validate(): bool
     {   
         // $is_valid = true;
         foreach ($this->rules() as $attribute => $rules) {
-            // atrributes are: f_name, l_name, etc
+            // attributes are: f_name, l_name, etc
             $value = $this->{$attribute};
             // each attribute has one or more rules associated with it
             echo 'Attribute: '. $attribute .'  Value: '. $value .' ';
@@ -98,6 +103,16 @@ abstract class Model{
             }
         }
         return empty($this->errors);
+    }
+
+    public function hasError($attribute)
+    {
+        return $this->errors[$attribute] ?? false;
+    }
+
+    public function getFirstError($attribute)
+    {
+        return $this->errors[$attribute][0] ?? '';
     }
 
     

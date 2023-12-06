@@ -7,6 +7,8 @@
  * @package app\views
  */
 
+use app\core\form\Form;
+
 ?>
 
 <h1>Register!</h1>
@@ -14,30 +16,13 @@
 <h2>Fill in the form!!</h2>
 <h2>Skadoosh!!</h2>
 
-<form action="" method="post">
-  <div class="form-group">
-    <label>Email address</label>
-    <input type="email" name="email" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>First Name</label>
-    <input type="text" name="f_name" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Last Name</label>
-    <input type="text" name="l_name" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="password" name="password" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Confirm Password</label>
-    <input type="password" name="passwd_confirm" class="form-control">
-  </div>
-  <!-- <div class="form-group">
-    <label for="exampleFormControlTextarea1">Message</label>
-    <textarea class="form-control" name="message" rows="3"></textarea>
-  </div> -->
+<?php $form =  Form::begin('', 'post')?>
+  <?php echo $form->field($model, 'f_name')->setLabel("First Name") ?>
+  <?php echo $form->field($model, 'l_name')->setLabel('Last Name') ?>
+  <?php echo $form->field($model, 'email')->setLabel('Email')->emailField() ?>
+  <?php echo $form->field($model, 'password')->setLabel('Password')->passwordField() ?>
+  <?php echo $form->field($model, 'passwd_confirm')->setLabel('Confirm Password')->passwordField() ?>
+
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+<?php echo Form::end()?>

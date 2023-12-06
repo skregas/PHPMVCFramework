@@ -5,11 +5,13 @@ use app\core\Model;
 
 /**
  * Summary of RegisterModel
+ * 
+ * Handles data posted from registration form
  * @author skregas <skregas01@gmail.com>
  * @package htdocs/PHPMVCFramework/models/RegisterModel.php
  * @copyright (c) 2023
  */
-class RegisterModel extends Model{
+class RegisterModel extends Model {
 
     public $f_name;
     public $l_name;
@@ -45,12 +47,6 @@ class RegisterModel extends Model{
             self::RULE_MATCH => "This field must match the {match} field",
         ];
     }
-
-    
-
-
 }
-
-
 
 ?>
