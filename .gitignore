@@ -7,3 +7,6 @@ todos.md
 /runtime/*
 # ...except
 !/runtime/.gitkeep
+# env files
+.env
+!.env.example
